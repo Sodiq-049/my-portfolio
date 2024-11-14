@@ -781,6 +781,7 @@ h3.my-profession{
    
     .aside{
         left: -270px;
+        transition: left 0.3s ease;
     }
 
     .aside.open{
@@ -790,6 +791,7 @@ h3.my-profession{
     .aside .nav-toggler{
         display: flex;
         left: 30px;
+        cursor: pointer;
     }
     .aside .nav-toggler.open{
         left: 300px;
@@ -797,10 +799,12 @@ h3.my-profession{
 
     .section{
         left: 0;
+        transition: left 0.3s ease;
     }
 
     .section.open{
         left: 270px;
+
     }
 
     .about .about-content .personal-info .info-item p span{ 
