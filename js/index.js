@@ -73,10 +73,6 @@ navTogglerBtn.addEventListener('click', () => {
     asideSectionTogglerBtn();
 });
 
-navTogglerBtn.addEventListener('touchstart', () => {
-    asideSectionTogglerBtn();
-});
-
 function asideSectionTogglerBtn(){
     aside.classList.toggle('open');
     navTogglerBtn.classList.toggle('open');
