@@ -1,4 +1,3 @@
-// typing animation
 var typed = new Typed('.typing', {
     strings: ["Full-stack Developer", "Web Developer", "Web Designer", "Website Maintenance", "Graphic Designer"],
     typeSpeed: 100,
@@ -7,79 +6,90 @@ var typed = new Typed('.typing', {
 });
 
 // Aside
-const nav = document.querySelector('.nav'), 
+const nav = document.querySelector('.nav'),
       navList = nav.querySelectorAll('li'),
       totalNavList = navList.length,
       allSection = document.querySelectorAll('.section'),
       totalSection = allSection.length;
 
-for(let i = 0; i < totalNavList; i++){
+let sectionIndex = 0; // Initialize sectionIndex with a default value
+
+// Update sectionIndex when clicking a navigation link
+for (let i = 0; i < totalNavList; i++) {
     const a = navList[i].querySelector('a');
-    a.addEventListener('click', function(){
+    a.addEventListener('click', function () {
         removeBackSection();
-        for(let j = 0; j < totalNavList; j++){
-            if(navList[j].querySelector('a').classList.contains('active')){
+        for (let j = 0; j < totalNavList; j++) {
+            if (navList[j].querySelector('a').classList.contains('active')) {
                 addBackSection(j);
             }
             navList[j].querySelector('a').classList.remove('active');
         }
         this.classList.add('active');
         showSection(this);
-        if(window.innerWidth < 1200){
+
+        // Set sectionIndex based on the clicked section
+        sectionIndex = i;  // Update the section index dynamically
+        if (window.innerWidth < 1200) {
             asideSectionTogglerBtn();
         }
     });
 }
 
-function removeBackSection(){
-    for(let i = 0; i < totalSection; i++){
+function removeBackSection() {
+    for (let i = 0; i < totalSection; i++) {
         allSection[i].classList.remove('back-section');
     }
 }
 
-function addBackSection(num){
+function addBackSection(num) {
     allSection[num].classList.add('back-section');
 }
 
-function showSection(element){
-    for(let i = 0; i < totalSection; i++){
+function showSection(element) {
+    for (let i = 0; i < totalSection; i++) {
         allSection[i].classList.remove('active');
     }
     const target = element.getAttribute('href').split('#')[1];
-    document.querySelector('#'+target).classList.add('active');
+    document.querySelector('#' + target).classList.add('active');
 }
 
-function updateNav(element){
-    for(let i = 0; i < totalNavList; i++){
+function updateNav(element) {
+    for (let i = 0; i < totalNavList; i++) {
         navList[i].querySelector('a').classList.remove('active');
         const target = element.getAttribute('href').split('#')[1];
-        if(target === navList[i].querySelector('a').getAttribute('href').split('#')[1]){
+        if (target === navList[i].querySelector('a').getAttribute('href').split('#')[1]) {
             navList[i].querySelector('a').classList.add('active');
         }
     }
 }
 
-document.querySelector('.hire-me').addEventListener('click', function(){
+// Handling the 'hire-me' click event
+document.querySelector('.hire-me').addEventListener('click', function () {
     showSection(this);
     updateNav(this);
     removeBackSection();
-    addBackSection(sectionIndex);
+    addBackSection(sectionIndex); // sectionIndex should now be defined
 });
 
+// Toggle aside menu visibility
 const navTogglerBtn = document.querySelector('.nav-toggler'),
       aside = document.querySelector('.aside');
 
-navTogglerBtn.addEventListener('click', () => { 
+navTogglerBtn.addEventListener('click', () => {
     asideSectionTogglerBtn();
 });
 
-function asideSectionTogglerBtn(){
+function asideSectionTogglerBtn() {
     aside.classList.toggle('open');
     navTogglerBtn.classList.toggle('open');
-    for(let i = 0; i < totalSection; i++){
+    for (let i = 0; i < totalSection; i++) {
         allSection[i].classList.toggle('open');
     }
 }
+
+
+
 
 // Form submission event listener
 document.getElementById('contact-form').addEventListener('submit', function(event) {
