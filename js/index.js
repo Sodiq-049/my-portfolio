@@ -6,26 +6,26 @@ var typed = new Typed('.typing', {
 });
 
 // Aside
-const nav = document.querySelector('.nav'),
-      navList = nav.querySelectorAll('li'),
+const nav = document.querySelector(".nav"),
+      navList = nav.querySelectorAll("li"),
       totalNavList = navList.length,
-      allSection = document.querySelectorAll('.section'),
+      allSection = document.querySelectorAll(".section"),
       totalSection = allSection.length;
 
 let sectionIndex = 0; // Initialize sectionIndex with a default value
 
 // Update sectionIndex when clicking a navigation link
 for (let i = 0; i < totalNavList; i++) {
-    const a = navList[i].querySelector('a');
-    a.addEventListener('click', function () {
+    const a = navList[i].querySelector("a");
+    a.addEventListener("click", function () {
         removeBackSection();
         for (let j = 0; j < totalNavList; j++) {
-            if (navList[j].querySelector('a').classList.contains('active')) {
+            if (navList[j].querySelector("a").classList.contains("active")) {
                 addBackSection(j);
             }
-            navList[j].querySelector('a').classList.remove('active');
+            navList[j].querySelector("a").classList.remove("active");
         }
-        this.classList.add('active');
+        this.classList.add("active");
         showSection(this);
 
         // Set sectionIndex based on the clicked section
@@ -38,34 +38,34 @@ for (let i = 0; i < totalNavList; i++) {
 
 function removeBackSection() {
     for (let i = 0; i < totalSection; i++) {
-        allSection[i].classList.remove('back-section');
+        allSection[i].classList.remove("back-section");
     }
 }
 
 function addBackSection(num) {
-    allSection[num].classList.add('back-section');
+    allSection[num].classList.add("back-section");
 }
 
 function showSection(element) {
     for (let i = 0; i < totalSection; i++) {
-        allSection[i].classList.remove('active');
+        allSection[i].classList.remove("active");
     }
-    const target = element.getAttribute('href').split('#')[1];
-    document.querySelector('#' + target).classList.add('active');
+    const target = element.getAttribute("href").split("#")[1];
+    document.querySelector("#" + target).classList.add("active");
 }
 
 function updateNav(element) {
     for (let i = 0; i < totalNavList; i++) {
-        navList[i].querySelector('a').classList.remove('active');
-        const target = element.getAttribute('href').split('#')[1];
-        if (target === navList[i].querySelector('a').getAttribute('href').split('#')[1]) {
-            navList[i].querySelector('a').classList.add('active');
+        navList[i].querySelector("a").classList.remove("active");
+        const target = element.getAttribute("href").split("#")[1];
+        if (target === navList[i].querySelector("a").getAttribute("href").split("#")[1]) {
+            navList[i].querySelector("a").classList.add("active");
         }
     }
 }
 
 // Handling the 'hire-me' click event
-document.querySelector('.hire-me').addEventListener('click', function () {
+document.querySelector(".hire-me").addEventListener("click", function () {
     showSection(this);
     updateNav(this);
     removeBackSection();
@@ -73,18 +73,18 @@ document.querySelector('.hire-me').addEventListener('click', function () {
 });
 
 // Toggle aside menu visibility
-const navTogglerBtn = document.querySelector('.nav-toggler'),
-      aside = document.querySelector('.aside');
+const navTogglerBtn = document.querySelector(".nav-toggler"),
+      aside = document.querySelector(".aside");
 
-navTogglerBtn.addEventListener('click', () => {
+navTogglerBtn.addEventListener("click", () => {
     asideSectionTogglerBtn();
 });
 
 function asideSectionTogglerBtn() {
-    aside.classList.toggle('open');
-    navTogglerBtn.classList.toggle('open');
+    aside.classList.toggle("open");
+    navTogglerBtn.classList.toggle("open");
     for (let i = 0; i < totalSection; i++) {
-        allSection[i].classList.toggle('open');
+        allSection[i].classList.toggle("open");
     }
 }
 

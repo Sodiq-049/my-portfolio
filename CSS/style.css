@@ -201,8 +201,8 @@ ul{
 .aside .logo a::before{
     content: '';
     position: absolute;
-    width: 20%;
-    height: 20%;
+    width: 20px;
+    height: 20px;
     border-bottom: 5px solid var(--skin-color);
     border-left: 5px solid var(--skin-color);
     bottom: 0;
@@ -211,8 +211,8 @@ ul{
 .aside .logo a::after{
     content: '';
     position: absolute;
-    width: 20%;
-    height: 20%;
+    width: 20px;
+    height: 20px;
     border-top: 5px solid var(--skin-color);
     border-right: 5px solid var(--skin-color);
     top: 0;
@@ -225,15 +225,15 @@ ul{
     border: 1px solid var(--bg-black-50);
     cursor: pointer;
     position: fixed;
-    left: 20px; /* Adjust position */
+    left: 300px; /* Adjust position */
     top: 20px; /* Adjust position */
     border-radius: 5px;
     background: var(--bg-black-100);
-    display: none; /* Make sure it's visible */
+    display: none;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    z-index: 20;
+    /* z-index: 20; */
 }
 
 .aside .nav-toggler span{
@@ -782,10 +782,11 @@ h3.my-profession{
 }
 
 @media (max-width:1199px){
-   
+    .section .container{
+        padding-top: 70px;
+    }
     .aside{
         left: -270px;
-        transition: left 0.3s ease;
     }
 
     .aside.open{
@@ -794,16 +795,15 @@ h3.my-profession{
 
     .aside .nav-toggler{
         display: flex;
-        left: 30px;
-        cursor: pointer;
+        /* left: 30px; */
     }
+
     .aside .nav-toggler.open{
         left: 300px;
     }
 
     .section{
         left: 0;
-        transition: left 0.3s ease;
     }
 
     .section.open{
@@ -849,30 +849,6 @@ h3.my-profession{
         max-width: 100%;
     }
 }
-
-@media screen and (max-width: 768px) {
-    .nav-toggler {
-        display: flex; /* Shows the toggle button on small screens */
-    }
-
-    /* Positioning adjustments for the toggle button */
-    .aside .nav-toggler {
-        left: 30px;
-        top: 20px;
-    }
-
-    /* Hiding aside on small screens by default */
-    .aside {
-        transform: translateX(-100%); /* Hides the aside */
-        transition: transform 0.3s ease; /* Smooth transition */
-    }
-
-    /* Show aside when 'open' class is added */
-    .aside.open {
-        transform: translateX(0); /* Moves the aside into view */
-    }
-}
-
 
 
 
