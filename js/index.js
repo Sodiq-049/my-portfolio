@@ -88,21 +88,20 @@ function asideSectionTogglerBtn() {
     }
 }
 
-
-
-
 // Form submission event listener
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
+    // Get values from the form using the 'name' attributes
     const formData = {
-        name: document.querySelector('input[placeholder="Name"]').value,
-        email: document.querySelector('input[placeholder="Email"]').value,
-        subject: document.querySelector('input[placeholder="Subject"]').value,
-        message: document.querySelector('textarea[placeholder="Message"]').value
+        name: document.querySelector('input[name="name"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        subject: document.querySelector('input[name="subject"]').value,
+        message: document.querySelector('textarea[name="message"]').value
     };
 
-    fetch('http://localhost:3000/send', {
+    // Sending data to the server (assuming backend is running on 'localhost:3000')
+    fetch('https://my-portfolio-2-i43d.onrender.com/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
