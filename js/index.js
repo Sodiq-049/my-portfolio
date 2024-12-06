@@ -92,16 +92,14 @@ function asideSectionTogglerBtn() {
 document.getElementById('contact-form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    // Get values from the form using the 'name' attributes
     const formData = {
-        name: document.querySelector('input[name="name"]').value,
-        email: document.querySelector('input[name="email"]').value,
-        subject: document.querySelector('input[name="subject"]').value,
-        message: document.querySelector('textarea[name="message"]').value
+        name: document.querySelector('input[placeholder="Name"]').value,
+        email: document.querySelector('input[placeholder="Email"]').value,
+        subject: document.querySelector('input[placeholder="Subject"]').value,
+        message: document.querySelector('textarea[placeholder="Message"]').value
     };
 
-    // Sending data to the server (assuming backend is running on 'localhost:3000')
-    fetch('https://my-portfolio-2-i43d.onrender.com/send', {
+    fetch('https://sodiq.hspace.cloud/send', { // Update URL to the deployed backend
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -111,6 +109,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         alert(data.message); // Show success message
     })
     .catch(error => {
-        alert('Failed to send message'); // Show error message
+        console.error('Error details:', error); // Log error for debugging
+        alert('Failed to send message. Please try again later.'); // Inform user
     });
 });

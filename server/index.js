@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('path');  // For resolving file paths
+const path = require('path'); // For resolving file paths
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -11,34 +11,38 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware setup
-app.use(cors());
+app.use(cors({
+    origin: 'https://sodiq.hspace.cloud', // Allow requests from your frontend's domain
+}));
 app.use(bodyParser.json());
 
 // Email setup
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // You can change this if you're using another email provider
+    service: 'gmail', // Change this if you're using another email provider
     auth: {
-        user: process.env.EMAIL_USER,  // From the environment variable
-        pass: process.env.EMAIL_PASS,  // From the environment variable
+        user: process.env.EMAIL_USER, // From the environment variable
+        pass: process.env.EMAIL_PASS, // From the environment variable
     },
 });
 
 // Routes for your application
 app.get('/', (req, res) => {
-  res.send('Welcome to My Portfolio!');
+    res.send('Welcome to My Portfolio!');
 });
 
 app.get('/about', (req, res) => {
-  res.send('About Me');
+    res.send('About Me');
 });
 
 app.get('/projects', (req, res) => {
-  res.send('Projects page');
+    res.send('Projects page');
 });
 
 // Handle the email sending
 app.post('/send', (req, res) => {
     const { name, email, subject, message } = req.body;
+
+    console.log('Received email data:', req.body); // Debug log
 
     const mailOptions = {
         from: email, // Sender's email
@@ -52,13 +56,14 @@ app.post('/send', (req, res) => {
             console.error('Error sending email:', error);
             return res.status(500).json({ message: 'Failed to send message' });
         }
+        console.log('Email sent successfully:', info.response); // Debug log
         res.status(200).json({ message: 'Message sent successfully!' });
     });
 });
 
 // Catch-all route for handling 404 errors
 app.use((req, res) => {
-  res.status(404).send('Page Not Found');
+    res.status(404).send('Page Not Found');
 });
 
 // Start the server
