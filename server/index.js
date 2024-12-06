@@ -12,7 +12,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware setup
 app.use(cors({
-    origin: 'https://sodiq.hspace.cloud', // Allow requests from your frontend's domain
+  origin: ['http://127.0.0.1:5502', 'https://sodiq.hspace.cloud'], // Add both origins
+  methods: ['GET', 'POST'], // Allow GET and POST requests
+  allowedHeaders: ['Content-Type'], // Allow specific headers
 }));
 app.use(bodyParser.json());
 
